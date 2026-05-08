@@ -1,0 +1,36 @@
+[
+  {
+    "id": "tenant_a_persistent_001",
+    "document": "tenant_a のガイドでは、Chroma の永続化に PersistentClient と path を使います。",
+    "metadata": {
+      "source": "tenant_a_guide.md",
+      "section": "Persistence",
+      "doc_type": "guide",
+      "tenant_id": "tenant_a",
+      "page": 2
+    }
+  },
+  {
+    "id": "tenant_a_metadata_001",
+    "document": "tenant_a の検索 API は tenant_id と doc_type を metadata filter として適用します。",
+    "metadata": {
+      "source": "tenant_a_api.md",
+      "section": "Filters",
+      "doc_type": "api",
+      "tenant_id": "tenant_a",
+      "page": 4
+    }
+  },
+  {
+    "id": "tenant_b_private_001",
+    "document": "tenant_b の内部文書です。別 tenant の検索結果に混ざってはいけません。",
+    "metadata": {
+      "source": "tenant_b_private.md",
+      "section": "Private",
+      "doc_type": "guide",
+      "tenant_id": "tenant_b",
+      "page": 1
+    }
+  }
+]
+

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "chunk_persistent_client_001",
+    "document": "Chroma でローカル永続化するには PersistentClient を使い、path に保存先ディレクトリを指定します。",
+    "metadata": {
+      "source": "chroma_clients.md",
+      "section": "PersistentClient",
+      "doc_type": "guide",
+      "lang": "ja",
+      "page": 3
+    }
+  },
+  {
+    "id": "chunk_client_server_001",
+    "document": "client-server mode では Chroma server を別プロセスで起動し、HttpClient から接続します。",
+    "metadata": {
+      "source": "chroma_clients.md",
+      "section": "Client-server",
+      "doc_type": "guide",
+      "lang": "ja",
+      "page": 5
+    }
+  },
+  {
+    "id": "chunk_metadata_filter_001",
+    "document": "metadata filtering では where を使い、tenant_id, doc_type, lang などで検索範囲を制御します。",
+    "metadata": {
+      "source": "query_filters.md",
+      "section": "Metadata",
+      "doc_type": "guide",
+      "lang": "ja",
+      "page": 2
+    }
+  },
+  {
+    "id": "chunk_source_display_001",
+    "document": "RAG の回答では、本文だけでなく source, page, section, chunk_id を表示すると検証しやすくなります。",
+    "metadata": {
+      "source": "rag_design.md",
+      "section": "Citation",
+      "doc_type": "design_note",
+      "lang": "ja",
+      "page": 4
+    }
+  },
+  {
+    "id": "chunk_reranking_001",
+    "document": "reranking は Chroma で広めに取得した候補を、質問に直接答えている順に並べ替える工程です。",
+    "metadata": {
+      "source": "rag_design.md",
+      "section": "Reranking",
+      "doc_type": "design_note",
+      "lang": "ja",
+      "page": 6
+    }
+  },
+  {
+    "id": "chunk_query_expansion_001",
+    "document": "query expansion は短く曖昧なユーザー質問を、検索に向いた語彙へ拡張する処理です。",
+    "metadata": {
+      "source": "rag_design.md",
+      "section": "Query expansion",
+      "doc_type": "design_note",
+      "lang": "ja",
+      "page": 5
+    }
+  }
+]
+

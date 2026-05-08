@@ -1,0 +1,43 @@
+[
+  {
+    "id": "react_useeffect_basic",
+    "document": "React の useEffect はレンダー後に副作用を実行するための Hook です。",
+    "metadata": {
+      "source": "react_hooks.md",
+      "topic": "useEffect",
+      "doc_type": "technical_note",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "react_usememo_basic",
+    "document": "React の useMemo は計算結果をメモ化し、不要な再計算を避けるために使います。",
+    "metadata": {
+      "source": "react_hooks.md",
+      "topic": "useMemo",
+      "doc_type": "technical_note",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "react_useeffect_cleanup",
+    "document": "useEffect の cleanup 関数は、依存配列が変わる前と component が unmount される時に実行されます。",
+    "metadata": {
+      "source": "react_hooks.md",
+      "topic": "useEffect",
+      "doc_type": "technical_note",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "vue_watcheffect_basic",
+    "document": "Vue の watchEffect は依存する reactive state を追跡して副作用を実行します。",
+    "metadata": {
+      "source": "vue_reactivity.md",
+      "topic": "watchEffect",
+      "doc_type": "technical_note",
+      "lang": "ja"
+    }
+  }
+]
+

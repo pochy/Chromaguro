@@ -1,0 +1,63 @@
+[
+  {
+    "id": "tenant_a_persist_v1",
+    "document": "Chroma の永続化は PersistentClient を使い、path にローカル保存先を指定します。",
+    "metadata": {
+      "tenant_id": "tenant_a",
+      "source": "ops_guide.md",
+      "section": "Persistence",
+      "doc_type": "guide",
+      "chunker_version": "v1",
+      "embedding_version": "embed_v1"
+    }
+  },
+  {
+    "id": "tenant_a_persist_v2",
+    "document": "ローカル開発で Chroma のデータを残す場合は PersistentClient(path='./chroma_db') を使います。client-server mode では HttpClient を使います。",
+    "metadata": {
+      "tenant_id": "tenant_a",
+      "source": "ops_guide.md",
+      "section": "Persistence",
+      "doc_type": "guide",
+      "chunker_version": "v2",
+      "embedding_version": "embed_v1"
+    }
+  },
+  {
+    "id": "tenant_a_metadata_v2",
+    "document": "metadata filter は tenant_id, doc_type, lang, page などで検索空間を制御し、access control にも使います。",
+    "metadata": {
+      "tenant_id": "tenant_a",
+      "source": "search_design.md",
+      "section": "Metadata",
+      "doc_type": "design_note",
+      "chunker_version": "v2",
+      "embedding_version": "embed_v1"
+    }
+  },
+  {
+    "id": "tenant_a_fulltext_v2",
+    "document": "where_document の $contains は SKU-12345, useEffect, ERR_PAYMENT_TIMEOUT のような exact keyword を含む文書の検索に有効です。",
+    "metadata": {
+      "tenant_id": "tenant_a",
+      "source": "search_design.md",
+      "section": "Full-text",
+      "doc_type": "design_note",
+      "chunker_version": "v2",
+      "embedding_version": "embed_v1"
+    }
+  },
+  {
+    "id": "tenant_b_private_v1",
+    "document": "tenant_b の契約文書です。tenant_a の検索結果には表示してはいけません。",
+    "metadata": {
+      "tenant_id": "tenant_b",
+      "source": "contract.md",
+      "section": "Private",
+      "doc_type": "contract",
+      "chunker_version": "v1",
+      "embedding_version": "embed_v1"
+    }
+  }
+]
+

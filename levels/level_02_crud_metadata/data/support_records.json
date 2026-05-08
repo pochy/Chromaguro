@@ -1,0 +1,39 @@
+[
+  {
+    "id": "admin_manual_account_001",
+    "document": "管理者はアカウント設定画面でユーザーを招待できます。",
+    "metadata": {
+      "source": "admin_manual.md",
+      "doc_type": "manual",
+      "section": "account",
+      "tenant_id": "tenant_a",
+      "lang": "ja",
+      "page": 3
+    }
+  },
+  {
+    "id": "admin_manual_billing_001",
+    "document": "請求情報は billing セクションで確認できます。支払い方法の変更も可能です。",
+    "metadata": {
+      "source": "admin_manual.md",
+      "doc_type": "manual",
+      "section": "billing",
+      "tenant_id": "tenant_a",
+      "lang": "ja",
+      "page": 7
+    }
+  },
+  {
+    "id": "release_note_search_001",
+    "document": "検索 API は metadata の tenant_id と doc_type による絞り込みを必須にしました。",
+    "metadata": {
+      "source": "release_notes.md",
+      "doc_type": "release_note",
+      "section": "search",
+      "tenant_id": "tenant_a",
+      "lang": "ja",
+      "page": 1
+    }
+  }
+]
+

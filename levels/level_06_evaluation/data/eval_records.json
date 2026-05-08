@@ -1,0 +1,53 @@
+[
+  {
+    "id": "chunk_persistent_client_001",
+    "document": "Chroma でローカル永続化するには PersistentClient を使い、path に保存先ディレクトリを指定します。",
+    "metadata": {
+      "source": "chroma_clients.md",
+      "section": "PersistentClient",
+      "doc_type": "guide",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chunk_client_server_001",
+    "document": "client-server mode では Chroma server を別プロセスで起動し、HttpClient から接続します。",
+    "metadata": {
+      "source": "chroma_clients.md",
+      "section": "Client-server",
+      "doc_type": "guide",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chunk_metadata_filter_001",
+    "document": "metadata filtering では where を使い、tenant_id, doc_type, lang などで検索範囲を制御します。",
+    "metadata": {
+      "source": "query_filters.md",
+      "section": "Metadata",
+      "doc_type": "guide",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chunk_fulltext_001",
+    "document": "where_document の $contains は useEffect や SKU-12345 のような exact keyword を含む文書の検索に使えます。",
+    "metadata": {
+      "source": "query_filters.md",
+      "section": "Full-text",
+      "doc_type": "guide",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chunk_evaluation_001",
+    "document": "retrieval evaluation では gold question と relevant_ids を作り、recall@k, precision@k, MRR を測ります。",
+    "metadata": {
+      "source": "evaluation.md",
+      "section": "Metrics",
+      "doc_type": "design_note",
+      "lang": "ja"
+    }
+  }
+]
+

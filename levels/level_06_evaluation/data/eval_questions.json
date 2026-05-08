@@ -1,0 +1,19 @@
+[
+  {
+    "question": "Chroma でデータを永続化するには？",
+    "relevant_ids": ["chunk_persistent_client_001"]
+  },
+  {
+    "question": "metadata で tenant を絞るには？",
+    "relevant_ids": ["chunk_metadata_filter_001"]
+  },
+  {
+    "question": "useEffect を含む文書だけ探すには？",
+    "relevant_ids": ["chunk_fulltext_001"]
+  },
+  {
+    "question": "検索品質を数値で測るには？",
+    "relevant_ids": ["chunk_evaluation_001"]
+  }
+]
+
