@@ -17,7 +17,10 @@ from shared.chroma_helpers import compact_document, example_db_path, load_json, 
 app = FastAPI(title="Chroma Tutorial Search API")
 
 client = chromadb.PersistentClient(path=example_db_path(__file__))
-collection = client.get_or_create_collection(name="level07_api")
+collection = client.get_or_create_collection(
+    name="level07_api",
+    embedding_function=None,
+)
 
 
 class SearchResult(BaseModel):
@@ -115,4 +118,3 @@ def rag(request: RagRequest) -> RagResponse:
     ]
     answer = " ".join(compact_document(row["document"], limit=120) for row in rows[:2])
     return RagResponse(answer=answer, sources=sources, context=context)
-

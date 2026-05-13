@@ -9,7 +9,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.append(str(ROOT))
 
-from shared.chroma_helpers import add_records, print_results, query_records, recreate_collection
+from shared.chroma_helpers import (
+    add_records,
+    print_results,
+    query_records,
+    recreate_collection,
+)
 
 
 records = [
@@ -21,6 +26,11 @@ records = [
     {
         "id": "tea_intro_001",
         "document": "紅茶は茶葉を発酵させて作る飲み物で、香りと渋みが特徴です。",
+        "metadata": {"source": "tea_notes.md", "category": "tea", "lang": "ja"},
+    },
+    {
+        "id": "tea_intro_002",
+        "document": "緑茶は、茶葉を蒸して酸化を止めた非発酵茶で、緑色が鮮やかで渋みと旨味のバランスが特徴のお茶です。",
         "metadata": {"source": "tea_notes.md", "category": "tea", "lang": "ja"},
     },
 ]
@@ -41,4 +51,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

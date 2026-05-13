@@ -8,8 +8,12 @@ import chromadb
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.append(str(ROOT))
 
-from shared.chroma_helpers import example_db_path, print_results, query_records, upsert_records
-
+from shared.chroma_helpers import (
+    example_db_path,
+    print_results,
+    query_records,
+    upsert_records,
+)
 
 records = [
     {
@@ -27,14 +31,18 @@ records = [
 
 def main() -> None:
     client = chromadb.PersistentClient(path=example_db_path(__file__))
-    collection = client.get_or_create_collection(name="level01_persistent")
+    collection = client.get_or_create_collection(
+        name="level01_persistent",
+        embedding_function=None,
+    )
     upsert_records(collection, records)
 
     print(f"collection count: {collection.count()}")
-    result = query_records(collection, "Chroma のデータを保存して再利用したい", n_results=2)
+    result = query_records(
+        collection, "Chroma のデータを保存して再利用したい", n_results=2
+    )
     print_results("PersistentClient", result)
 
 
 if __name__ == "__main__":
     main()
-

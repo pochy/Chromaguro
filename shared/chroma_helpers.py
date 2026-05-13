@@ -164,6 +164,7 @@ def recreate_collection(client: Any, name: str, **kwargs: Any) -> Any:
         client.delete_collection(name)
     except Exception:
         pass
+    kwargs.setdefault("embedding_function", None)
     return client.create_collection(name=name, **kwargs)
 
 
@@ -254,4 +255,3 @@ def compact_document(document: str, limit: int = 220) -> str:
     if len(normalized) <= limit:
         return normalized
     return normalized[: limit - 1] + "..."
-
