@@ -1090,6 +1090,110 @@ reranking すべきか
 
 この流れで学べば、Chroma の API を覚えるだけでなく、**RAG / AI エージェント向けの検索基盤を設計できるレベル**までステップアップできます。
 
+---
+
+# 完全版への拡張方針
+
+このリポジトリでは、既存 Level 0-9 を標準ルートとして残しつつ、Chroma の広い機能を次の 3 層で扱います。
+
+```text
+標準ルート:
+  完全ローカル・APIキー不要。
+  query/get/where/where_document/chunking/RAG/evaluation/API/production を実行する。
+
+発展ルート:
+  local server / HttpClient / CLI / framework integrations を任意で実行する。
+
+設計理解ルート:
+  Cloud Search API / Schema / sparse vector / sync / collection fork / Cloud performance を
+  付録と疑似実験で理解する。
+```
+
+## Chroma の全体機能と教材での扱い
+
+| 機能 | 重要性 | 教材での扱い |
+| --- | --- | --- |
+| Document + metadata storage | retrieval の基本単位 | Level 1-3 |
+| Dense vector search | 意味検索の中核 | Level 1-6 |
+| Metadata filtering | access control / scope control | Level 2, 7, 8, 9 |
+| Full-text / regex | exact keyword retrieval | Level 4 |
+| Embedding functions | model 選択と index 品質 | Level 3, appendices |
+| Chunking | retrieval 品質の最大要因の一つ | Level 3, 6 |
+| Hybrid search | dense の弱点を補う | Level 4, 9 |
+| Reranking / MMR | context 選択の品質改善 | Level 5 |
+| Evaluation | 改善を測る | Level 6 |
+| Client modes | local / persistent / server / cloud | Level 1, 7, advanced_labs |
+| HNSW / index config | performance / recall tradeoff | Level 8 |
+| Search API | Cloud の advanced search interface | appendices |
+| Schema / sparse vector | Cloud の index 設計 | appendices |
+| Sync / forking | Cloud 運用・A/B | appendices |
+| Integrations | app framework / agent host 連携 | advanced_labs |
+| Agentic search / memory | production AI app の発展形 | Level 9, advanced_labs |
+
+## 追加教材の位置づけ
+
+```text
+appendices/feature_map.md
+  Chroma の全機能を地図として確認する。
+
+appendices/cloud_search_api_schema.md
+  Cloud Search API, Schema, sparse vector を local concepts と対応づける。
+
+appendices/integrations.md
+  LangChain, LlamaIndex, MCP をいつ使うか判断する。
+
+appendices/operations.md
+  backup, migration, rollback, tenant separation, evaluation logging を整理する。
+
+advanced_labs/local_server_http
+  Chroma server と HttpClient をローカルで実行する。
+
+advanced_labs/integrations
+  LangChain, LlamaIndex, MCP/agent memory を任意依存で試す。
+```
+
+## Cloud 専用機能の扱い
+
+この教材では Cloud アカウントや API キーを標準要件にしません。ただし、Chroma を今後使う意味を理解するには Cloud 専用機能も知っておく必要があります。
+
+```text
+Search API:
+  query/get を unified, composable, type-safe にした発展形。
+
+Schema:
+  field ごとに index を制御し、write cost / query speed / retrieval quality を調整する仕組み。
+
+Sparse vector:
+  keyword / BM25 / SPLADE 系 retrieval。dense embedding と RRF で組み合わせる。
+
+Group By:
+  source や category で結果を多様化し、同一文書の chunk が上位を独占する問題を避ける。
+
+Sync:
+  S3, GitHub, Web, File などから ingest を管理する仕組み。
+
+Collection forking:
+  copy-on-write で A/B testing や memory conflict handling を行うための仕組み。
+```
+
+## 終了時の到達像
+
+このチュートリアルを終えた学習者は、次を説明できる状態を目指します。
+
+```text
+なぜ Chroma は SQLite の代替ではなく retrieval index なのか
+どの単位で chunk すべきか
+どの metadata を持たせるべきか
+where と where_document をどう使い分けるか
+dense / sparse / hybrid をどう使い分けるか
+RAG context をどう選び、source をどう表示するか
+検索品質をどう測り、失敗原因をどう分類するか
+本番で reindex / migration / rollback / access control をどう設計するか
+Search API / Schema / sparse vector がなぜ必要になるか
+LangChain / LlamaIndex / MCP をいつ使い、いつ直接 SDK を使うべきか
+agentic search / memory で Chroma がどの役割を持つか
+```
+
 [1]: https://www.trychroma.com/ "Chroma - open-source search infrastructure for AI"
 [2]: https://docs.trychroma.com/docs/overview/getting-started "Getting Started - Chroma Docs"
 [3]: https://docs.trychroma.com/docs/querying-collections/query-and-get "Query and Get - Chroma Docs"

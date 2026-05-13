@@ -25,6 +25,16 @@ chunk_too_large
 query_too_short
 ```
 
+## 4. retrieval strategy を比較する
+
+次を実行してください。
+
+```bash
+python levels/level_06_evaluation/examples/03_compare_retrieval_strategies.py
+```
+
+dense / sparse / hybrid の recall@3 を比較し、どの質問で差が出たか記録してください。
+
 ## 提出物
 
 次の内容をメモしてください。

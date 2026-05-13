@@ -88,3 +88,15 @@ where と where_document の違いを言える
 - [Query and Get](https://docs.trychroma.com/docs/querying-collections/query-and-get): `where_document` の位置づけ。
 - [Full Text Search](https://docs.trychroma.com/docs/querying-collections/full-text-search): document 本文検索。
 
+## 発展: regex と sparse / hybrid の考え方
+
+追加で次を実行します。
+
+```bash
+python levels/level_04_search_improvement/examples/03_regex_document_filter.py
+python levels/level_04_search_improvement/examples/04_pseudo_sparse_hybrid.py
+```
+
+`where_document` は `$contains` だけでなく `$regex` も使えます。エラーコード、SKU、メールアドレス、法律番号などは regex が有効です。
+
+Cloud では sparse vector index と Search API の RRF により、dense semantic search と lexical retrieval を native に組み合わせられます。この教材では API キー不要にするため、ローカル疑似 sparse と RRF で同じ判断を学びます。

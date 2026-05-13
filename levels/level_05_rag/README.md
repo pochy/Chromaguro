@@ -107,3 +107,23 @@ query expansion と reranking の役割を説明できる
 - [Query and Get](https://docs.trychroma.com/docs/querying-collections/query-and-get): Chroma から候補を取得する基本。
 - [Metadata Filtering](https://docs.trychroma.com/docs/querying-collections/metadata-filtering): RAG の検索範囲を絞るための filter。
 
+## 発展: context budget と MMR
+
+追加で次を実行します。
+
+```bash
+python levels/level_05_rag/examples/04_context_budget_mmr.py
+```
+
+RAG では top-k をそのまま全部 prompt に入れると、重複や長すぎる context が起きます。
+
+```text
+context budget
+  LLM に渡せる長さの上限。
+
+dedup
+  同じ source / 同じ内容の chunk を減らす。
+
+MMR
+  関連性を保ちながら、似すぎた chunk ばかりになるのを避ける。
+```

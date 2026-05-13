@@ -110,3 +110,25 @@ metadata は検索範囲を制御する情報だと説明できる
 - [Query and Get](https://docs.trychroma.com/docs/querying-collections/query-and-get): `query`, `get`, `where`, `where_document` の位置づけ。
 - [Metadata Filtering](https://docs.trychroma.com/docs/querying-collections/metadata-filtering): metadata filter の条件指定。
 
+## 発展: metadata filter を設計する
+
+追加で次を実行します。
+
+```bash
+python levels/level_02_crud_metadata/examples/03_advanced_metadata_filters.py
+```
+
+見る場所:
+
+```text
+$and / $or
+  複数条件を組み合わせる。
+
+$in / $nin
+  候補リストに含まれるかで絞る。
+
+array metadata の $contains
+  tags のような配列 metadata を検索条件に使う。
+```
+
+実務では metadata は「表示用の飾り」ではなく、検索範囲・権限・評価セグメントを決める設計情報です。

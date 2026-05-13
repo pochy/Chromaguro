@@ -1,0 +1,6 @@
+# Optional dependencies for advanced_labs/integrations.
+# The core tutorial does not require these packages.
+langchain-chroma>=0.2.0
+langchain-core>=0.3.0
+llama-index>=0.12.0
+llama-index-vector-stores-chroma>=0.4.0

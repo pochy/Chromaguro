@@ -42,6 +42,20 @@ B: tenant / 文書種類 / embedding model ごとに collection を分ける
 運用の複雑さ
 ```
 
+## 4. SQLite と Chroma の責任分界を書く
+
+自分のアプリで、次をどちらに置くか決めてください。
+
+```text
+ユーザーアカウント
+権限
+原本文書の保存場所
+chunked document
+embedding
+検索ログ
+評価データ
+```
+
 ## 提出物
 
 次の 3 つを書ければ完了です。

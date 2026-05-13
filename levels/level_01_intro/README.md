@@ -120,3 +120,25 @@ Client と PersistentClient の違いを言える
 - [Getting Started](https://docs.trychroma.com/docs/overview/getting-started): install, client, collection, add, query, results の流れ。
 - [Chroma Clients](https://docs.trychroma.com/docs/run-chroma/clients): In-Memory Client と Persistent Client の違い。
 
+## 発展: query と get と include
+
+追加で次を実行します。
+
+```bash
+python levels/level_01_intro/examples/03_query_vs_get.py
+```
+
+見る場所:
+
+```text
+get
+  ID や filter で record を取り出す。similarity ranking はしない。
+
+query
+  embedding 距離で近い順に探す。
+
+include
+  documents / metadatas / embeddings / distances のどれを返すか選ぶ。
+```
+
+Chroma の結果は column-major な形で返ります。`ids`, `documents`, `metadatas`, `distances` が同じ順番で並んでいることを確認してください。

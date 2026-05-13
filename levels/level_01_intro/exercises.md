@@ -34,6 +34,16 @@ source 表示
 
 `examples/02_persistent_client.py` を 2 回実行してください。2 回目も同じ collection を取得できることを確認します。
 
+## 4. query と get を比較する
+
+次を実行してください。
+
+```bash
+python levels/level_01_intro/examples/03_query_vs_get.py
+```
+
+`query` と `get` の違い、`include` で返る field が変わることをメモしてください。
+
 ## 提出物
 
 次の内容をメモしてください。

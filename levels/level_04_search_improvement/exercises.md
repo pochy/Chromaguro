@@ -34,6 +34,17 @@ policy_version
 
 RRF が raw score ではなく順位を使う理由を説明してください。
 
+## 4. regex と疑似 sparse を試す
+
+次を実行してください。
+
+```bash
+python levels/level_04_search_improvement/examples/03_regex_document_filter.py
+python levels/level_04_search_improvement/examples/04_pseudo_sparse_hybrid.py
+```
+
+`$regex` が向いている query と、sparse / keyword が向いている query を 3 つずつ書いてください。
+
 ## 提出物
 
 次の内容をメモしてください。

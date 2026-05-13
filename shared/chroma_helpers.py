@@ -90,6 +90,16 @@ CONCEPT_TERMS: dict[str, tuple[str, ...]] = {
         "全文",
         "キーワード",
     ),
+    "concept:tea": (
+        "tea",
+        "茶",
+        "お茶",
+        "日本茶",
+        "緑茶",
+        "紅茶",
+        "茶葉",
+        "非発酵",
+    ),
 }
 
 
@@ -188,6 +198,13 @@ def upsert_records(collection: Any, records: list[dict[str, Any]]) -> None:
     )
 
 
+def batched(records: list[dict[str, Any]], batch_size: int) -> Iterable[list[dict[str, Any]]]:
+    if batch_size <= 0:
+        raise ValueError("batch_size must be positive")
+    for index in range(0, len(records), batch_size):
+        yield records[index : index + batch_size]
+
+
 def query_records(
     collection: Any,
     query: str,
@@ -244,10 +261,86 @@ def reciprocal_rank_fusion(rankings: list[list[str]], k: int = 60) -> list[tuple
     return sorted(scores.items(), key=lambda item: item[1], reverse=True)
 
 
+def weighted_reciprocal_rank_fusion(
+    rankings: list[list[str]],
+    weights: list[float] | None = None,
+    k: int = 60,
+) -> list[tuple[str, float]]:
+    if weights is None:
+        weights = [1.0] * len(rankings)
+    if len(weights) != len(rankings):
+        raise ValueError("weights length must match rankings length")
+
+    scores: dict[str, float] = {}
+    for ranking, weight in zip(rankings, weights, strict=True):
+        for index, record_id in enumerate(ranking):
+            scores[record_id] = scores.get(record_id, 0.0) + weight / (k + index + 1)
+    return sorted(scores.items(), key=lambda item: item[1], reverse=True)
+
+
 def keyword_score(query: str, document: str) -> int:
     query_tokens = set(expand_tokens(query))
     document_tokens = set(expand_tokens(document))
     return len(query_tokens & document_tokens)
+
+
+def sparse_keyword_scores(query: str, records: list[dict[str, Any]]) -> list[tuple[str, float]]:
+    query_tokens = expand_tokens(query)
+    query_counts = {token: query_tokens.count(token) for token in set(query_tokens)}
+    rows: list[tuple[str, float]] = []
+
+    for record in records:
+        document_tokens = expand_tokens(record["document"])
+        document_counts = {token: document_tokens.count(token) for token in set(document_tokens)}
+        score = 0.0
+        for token, query_count in query_counts.items():
+            score += query_count * document_counts.get(token, 0)
+        rows.append((record["id"], score))
+
+    return sorted(rows, key=lambda item: item[1], reverse=True)
+
+
+def cosine_similarity(left: list[float], right: list[float]) -> float:
+    numerator = sum(a * b for a, b in zip(left, right, strict=True))
+    left_norm = math.sqrt(sum(value * value for value in left)) or 1.0
+    right_norm = math.sqrt(sum(value * value for value in right)) or 1.0
+    return numerator / (left_norm * right_norm)
+
+
+def mmr_select(
+    query: str,
+    rows: list[dict[str, Any]],
+    limit: int = 3,
+    lambda_mult: float = 0.7,
+) -> list[dict[str, Any]]:
+    query_embedding = embed_text(query)
+    candidates = list(rows)
+    selected: list[dict[str, Any]] = []
+
+    while candidates and len(selected) < limit:
+        best_row: dict[str, Any] | None = None
+        best_score = float("-inf")
+
+        for row in candidates:
+            document_embedding = embed_text(str(row["document"]))
+            relevance = cosine_similarity(query_embedding, document_embedding)
+            diversity_penalty = 0.0
+            if selected:
+                diversity_penalty = max(
+                    cosine_similarity(document_embedding, embed_text(str(item["document"])))
+                    for item in selected
+                )
+            score = lambda_mult * relevance - (1 - lambda_mult) * diversity_penalty
+            if score > best_score:
+                best_score = score
+                best_row = row
+
+        if best_row is None:
+            break
+        selected.append(best_row)
+        candidates.remove(best_row)
+
+    return selected
 
 
 def compact_document(document: str, limit: int = 220) -> str:

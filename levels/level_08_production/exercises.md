@@ -31,6 +31,16 @@ reranker を変更
 
 検索 API で tenant filter が漏れる可能性がある場所を列挙してください。
 
+## 4. index tradeoff を説明する
+
+次を実行してください。
+
+```bash
+python levels/level_08_production/examples/03_index_tradeoff_matrix.py
+```
+
+`space`, `ef_search`, metadata index, sparse vector index の tradeoff を説明してください。
+
 ## 提出物
 
 次の内容をメモしてください。

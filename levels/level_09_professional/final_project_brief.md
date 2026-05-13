@@ -21,6 +21,26 @@ evaluation dataset
 検索失敗ログ
 ```
 
+## 完全版要件
+
+必須要件を満たしたら、次も追加します。
+
+```text
+SQLite / RDB と Chroma の責任分界
+query rewrite / expansion のログ
+dense + keyword hybrid retrieval
+MMR または context dedup
+context budget
+tenant filter の API 層での強制
+embedding_version / chunker_version の metadata
+reindex plan
+evaluation regression report
+agentic memory collection
+local server + HttpClient smoke test
+```
+
+Cloud アカウントは必須ではありません。Search API / Schema / sparse vector は、`appendices/cloud_search_api_schema.md` を参考に、設計書と疑似実装で説明できれば合格です。
+
 ## 完成イメージ
 
 ```text
@@ -52,3 +72,14 @@ source 表示が UI に出ている
 tenant filter が漏れない
 ```
 
+## Professional Review Checklist
+
+```text
+RDB は source of truth、Chroma は retrieval index として分けた
+source document と Chroma record の対応が追える
+embedding model / chunker の変更時に rollback できる
+where_document または keyword retrieval が必要な query を分類できる
+context に入れる chunk の重複を減らしている
+検索ログから失敗分析できる
+LangChain / LlamaIndex / MCP を使う場合の利点と制約を説明できる
+```

@@ -100,3 +100,28 @@ embedding / chunker version を metadata に残す理由を説明できる
 - [Configure Collections](https://docs.trychroma.com/docs/collections/configure): collection 設定。
 - [Migration](https://docs.trychroma.com/docs/overview/migration): バージョン変更時の移行情報。
 
+## 発展: index と performance の tradeoff
+
+追加で次を実行します。
+
+```bash
+python levels/level_08_production/examples/03_index_tradeoff_matrix.py
+```
+
+本番では、検索品質だけでなく latency、write cost、index size、rollback も考えます。
+
+```text
+space
+  距離関数。embedding model と用途に合わせる。
+
+ef_search
+  recall と query latency の tradeoff。
+
+metadata index
+  filter を速くするが write cost が増える。
+
+sparse vector index
+  exact term retrieval に強いが Cloud/Search API 前提の設計になる。
+```
+
+運用チェックリストは [appendices/operations.md](../../appendices/operations.md) も参照してください。

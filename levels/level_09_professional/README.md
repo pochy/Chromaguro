@@ -116,3 +116,22 @@ versioning / A/B testing / evaluation logging の必要性
 - [Full Text Search](https://docs.trychroma.com/docs/querying-collections/full-text-search): exact keyword 検索。
 - [Metadata Filtering](https://docs.trychroma.com/docs/querying-collections/metadata-filtering): access control の土台になる filter。
 
+## 発展: agentic search / memory
+
+追加で次を実行します。
+
+```bash
+python levels/level_09_professional/examples/03_agentic_memory.py
+```
+
+production AI app では、1 回検索して終わりでは足りないことがあります。
+
+```text
+agentic search
+  query plan を作り、複数回検索し、足りなければ再検索する。
+
+agentic memory
+  semantic / procedural / episodic memory を Chroma collection に保存し、次回以降の計画に使う。
+```
+
+さらに進む場合は [advanced_labs/integrations/mcp_agent](../../advanced_labs/integrations/mcp_agent/README.md) と [appendices/integrations.md](../../appendices/integrations.md) を確認してください。

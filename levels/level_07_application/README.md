@@ -94,3 +94,25 @@ source を UI に表示する必要性を説明できる
 - [Chroma Clients](https://docs.trychroma.com/docs/run-chroma/clients): persistent / server / cloud の接続方式。
 - [Client-Server Mode](https://docs.trychroma.com/docs/run-chroma/client-server): Chroma server を別プロセスで動かす構成。
 
+## 発展: API contract と local server
+
+追加で次を実行します。
+
+```bash
+python levels/level_07_application/examples/02_api_contract_probe.py
+```
+
+見る場所:
+
+```text
+/health
+  collection が seed されているか。
+
+/search?q=
+  validation error が返るか。
+
+/search / /rag
+  response に id, document, metadata, distance, sources が含まれるか。
+```
+
+local Chroma server と `HttpClient` を試す場合は [advanced_labs/local_server_http](../../advanced_labs/local_server_http/README.md) に進みます。

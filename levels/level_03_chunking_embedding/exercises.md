@@ -33,6 +33,16 @@ rollback
 検索評価
 ```
 
+## 4. code chunking を試す
+
+次を実行してください。
+
+```bash
+python levels/level_03_chunking_embedding/examples/03_code_chunking.py
+```
+
+関数単位・class 単位の chunk が、自然文の chunk と何が違うか説明してください。
+
 ## 提出物
 
 次の内容をメモしてください。

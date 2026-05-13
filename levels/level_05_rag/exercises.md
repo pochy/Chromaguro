@@ -26,6 +26,16 @@ page や section は十分か
 遠いが重要な文書が落ちていないか
 ```
 
+## 4. context budget を設計する
+
+次を実行してください。
+
+```bash
+python levels/level_05_rag/examples/04_context_budget_mmr.py
+```
+
+top-k を全部入れる場合と、MMR で選ぶ場合の違いを説明してください。
+
 ## 提出物
 
 次の内容をメモしてください。

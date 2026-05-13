@@ -35,6 +35,45 @@ Level 0 は思想の入口です。全部を完璧に理解しようとせず、
 
 読み物だけで理解しようとしないでください。Chroma は「出力を見ながら少しずつ意味がわかる」タイプの道具です。
 
+## 3 つの学習ルート
+
+### 1. 初心者ルート
+
+```text
+START_HERE.md
+Level 0
+Level 1
+Level 2
+Level 3
+```
+
+まず「文書を入れて、質問で取り出す」体験と、metadata / chunking の意味をつかみます。
+
+### 2. 実務 RAG ルート
+
+```text
+Level 4
+Level 5
+Level 6
+Level 7
+Level 8
+Level 9
+appendices/operations.md
+```
+
+vector search だけに頼らず、検索品質、source 表示、評価、API、運用を学びます。
+
+### 3. Chroma 全体像ルート
+
+```text
+appendices/feature_map.md
+appendices/cloud_search_api_schema.md
+appendices/integrations.md
+advanced_labs/
+```
+
+Search API、Schema、sparse vector、framework integration、MCP/agent memory まで把握します。標準ルートは完全ローカルですが、Cloud 専用機能の設計上の意味もここで確認します。
+
 ## Level 別ロードマップ
 
 | Level | 何をする | 次へ進む条件 |
@@ -61,6 +100,13 @@ Level 0 は思想の入口です。全部を完璧に理解しようとせず、
 - [Query and Get](https://docs.trychroma.com/docs/querying-collections/query-and-get): `query`, `get`, `where`, `where_document` の位置づけを見る。
 
 Level 2 以降で必要になったら、metadata filtering や full-text search のページを読みます。
+
+Level 9 まで終えた後は、次も確認します。
+
+- [Search API Overview](https://docs.trychroma.com/cloud/search-api/overview): Cloud の composable search interface。
+- [Sparse Vector Search Setup](https://docs.trychroma.com/cloud/schema/sparse-vector-search): keyword retrieval と hybrid search。
+- [Agentic Search](https://docs.trychroma.com/guides/build/agentic-search): agent が複数回検索して回答する設計。
+- [Agentic Memory](https://docs.trychroma.com/guides/build/agentic-memory): Chroma を agent memory として使う設計。
 
 ## 「永続化」がわからない人へ
 

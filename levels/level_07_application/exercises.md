@@ -27,6 +27,16 @@ updated_at
 tenant_id は表示するべきか
 ```
 
+## 4. API contract を確認する
+
+次を実行してください。
+
+```bash
+python levels/level_07_application/examples/02_api_contract_probe.py
+```
+
+validation error、正常 response、sources の形をメモしてください。
+
 ## 提出物
 
 次の内容をメモしてください。

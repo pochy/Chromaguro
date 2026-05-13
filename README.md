@@ -6,6 +6,21 @@ Chroma を RAG / AI エージェント向けの検索基盤として学ぶため
 
 初心者はまず [START_HERE.md](START_HERE.md) から始めてください。用語が不安な場合は [glossary.md](glossary.md) を参照します。全体設計の詳しい背景は [TUTORIAL.md](TUTORIAL.md) にあります。
 
+## Why Chroma, not SQLite?
+
+SQLite や PostgreSQL は、正確な構造化データ、transaction、join、集計、source of truth に向いています。Chroma はそれとは別の役割を持ちます。
+
+```text
+RDB / SQLite:
+  ユーザー、権限、請求、原本メタデータ、監査ログを正確に管理する。
+
+Chroma:
+  chunked document、embedding、metadata、full-text 条件を使って、
+  LLM や agent に渡す context 候補を取り出す。
+```
+
+この教材では Chroma を「AI のための retrieval index」として扱います。保存できること自体ではなく、質問に役立つ情報をどう検索し、どう評価し、どう運用するかを学びます。
+
 ## ゴール
 
 この教材の最終目標は、次を自分で設計・実装・説明できるようになることです。
@@ -71,6 +86,18 @@ python levels/level_01_intro/examples/01_hello_chroma.py
 5. 進級条件を満たしたら次の Level へ進む
 ```
 
+## 完全ローカル方針と Cloud 機能
+
+標準ルートは API キー不要・完全ローカルで動きます。Cloud 専用機能は実行必須にしませんが、設計判断として理解できるように付録で扱います。
+
+| 種類 | 標準ルート | 付録 / Advanced Labs |
+| --- | --- | --- |
+| `query`, `get`, `where`, `where_document` | 実行する | 詳細比較 |
+| `PersistentClient` | 実行する | 運用設計 |
+| `HttpClient` / local server | 任意 | `advanced_labs/local_server_http` |
+| Search API / Schema / sparse vector | 疑似実験 | `appendices/cloud_search_api_schema.md` |
+| LangChain / LlamaIndex / MCP | 任意 | `advanced_labs/integrations` |
+
 ## よく使うコマンド
 
 Level 1 の基本例:
@@ -106,6 +133,14 @@ GET  /search?q=検索したい内容
 POST /rag
 ```
 
+全 example を確認する場合:
+
+```bash
+for f in $(find levels -path '*/examples/*.py' | sort); do
+  PYTHONDONTWRITEBYTECODE=1 python "$f"
+done
+```
+
 ## フォルダ構成
 
 ```text
@@ -114,8 +149,11 @@ START_HERE.md               初心者向けの進め方
 TUTORIAL.md                 教材全体の設計背景
 glossary.md                 用語集
 requirements.txt            Python 依存関係
+requirements-integrations.txt 任意 integration lab 用の依存関係
 shared/                     教材用の共通 helper
 levels/                     Level 0-9 の教材本体
+appendices/                 Chroma 機能マップ・Cloud専用機能・運用・連携の付録
+advanced_labs/              local server / integration / agent memory の任意演習
 ```
 
 各 Level の主な構成:

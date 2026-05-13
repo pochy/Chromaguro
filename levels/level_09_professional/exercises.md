@@ -12,6 +12,16 @@
 
 chunker_version `v1` と `v2` の recall@3 を比較する評価データを追加してください。
 
+## 4. agentic memory を設計する
+
+次を実行してください。
+
+```bash
+python levels/level_09_professional/examples/03_agentic_memory.py
+```
+
+semantic / procedural / episodic memory のどれを保存すべきか、自分のアプリで 3 つ例を書いてください。
+
 ## 提出物
 
 次の内容をメモしてください。

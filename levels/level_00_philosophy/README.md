@@ -96,3 +96,20 @@ LLM に読ませる文書を選ぶための検索基盤である。
 
 この Level では公式 docs はまだ読まなくて構いません。Level 1 で Getting Started を見ます。
 
+## 発展: SQLite と Chroma の役割を分ける
+
+Chroma を学ぶ意味は、SQLite のような DB 操作を置き換えることではありません。RDB は source of truth、Chroma は retrieval index と考えます。
+
+```text
+RDB:
+  user, permission, billing, audit, original file metadata
+
+Chroma:
+  chunked document, embedding, retrieval metadata, distance, source display
+```
+
+この違いがわかると、Chroma を「保存先」ではなく「質問に対して context を選ぶ検索基盤」として設計できます。
+
+次も確認してください。
+
+- [appendices/feature_map.md](../../appendices/feature_map.md): Chroma の機能地図。

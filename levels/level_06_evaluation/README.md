@@ -103,3 +103,25 @@ recall@k / precision@k / MRR をざっくり説明できる
 
 Chroma 公式 docs に評価指標の詳細チュートリアルは少ないため、この Level は教材内の実装を主教材にします。Chroma 側は [Query and Get](https://docs.trychroma.com/docs/querying-collections/query-and-get) を見て、取得結果の形を確認してください。
 
+## 発展: strategy 比較
+
+追加で次を実行します。
+
+```bash
+python levels/level_06_evaluation/examples/03_compare_retrieval_strategies.py
+```
+
+見る場所:
+
+```text
+dense
+  embedding 類似検索。
+
+sparse
+  keyword に近い疑似検索。
+
+hybrid
+  dense と sparse を RRF で統合。
+```
+
+評価では「検索方式を変えたら本当に良くなったか」を gold dataset で比較します。体感ではなく、recall / precision / MRR で判断します。

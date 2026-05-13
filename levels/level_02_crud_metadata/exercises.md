@@ -27,6 +27,16 @@
 文書の版
 ```
 
+## 4. advanced filter を試す
+
+次を実行し、どの条件でどの record が返るか確認してください。
+
+```bash
+python levels/level_02_crud_metadata/examples/03_advanced_metadata_filters.py
+```
+
+`$and`, `$in`, array metadata の `$contains` を自分の言葉で説明してください。
+
 ## 提出物
 
 次の内容をメモしてください。
