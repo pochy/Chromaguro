@@ -130,3 +130,21 @@ start_line / end_line
 chunker_version
   chunking ルールを変えた時に比較できるようにする版。
 ```
+
+## 発展: collection-owned embedding function
+
+追加で次を実行します。
+
+```bash
+python levels/level_03_chunking_embedding/examples/04_custom_embedding_function.py
+```
+
+これまでの多くの example では、教材用 helper が `embeddings` と `query_embeddings` を明示的に渡していました。この example では、Chroma collection に `embedding_function` を設定し、`collection.add(documents=...)` と `collection.query(query_texts=...)` で Chroma 側から embedding function が呼ばれる流れを確認します。
+
+見る場所:
+
+```text
+documents だけを add している
+query_texts だけで query している
+それでも embedding function により検索できている
+```

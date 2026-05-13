@@ -125,3 +125,23 @@ sparse vector index
 ```
 
 運用チェックリストは [appendices/operations.md](../../appendices/operations.md) も参照してください。
+
+## 発展: collection lifecycle を確認する
+
+追加で次を実行します。
+
+```bash
+python levels/level_08_production/examples/04_collection_lifecycle.py
+```
+
+見る場所:
+
+```text
+create_collection で metadata 付き collection を作る
+list_collections で確認する
+modify で name / metadata を変更する
+get_collection で変更後の collection を取得する
+delete_collection で削除する
+```
+
+record の CRUD と collection の lifecycle は別です。record を更新するだけなら Level 2 の `update` / `upsert` / `delete`、index の単位そのものを変えるなら collection lifecycle と reindex plan を考えます。

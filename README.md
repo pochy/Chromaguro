@@ -95,6 +95,7 @@ python levels/level_01_intro/examples/01_hello_chroma.py
 | `query`, `get`, `where`, `where_document` | 実行する | 詳細比較 |
 | `PersistentClient` | 実行する | 運用設計 |
 | `HttpClient` / local server | 任意 | `advanced_labs/local_server_http` |
+| local / OSS coverage | 付録で確認 | `appendices/local_chroma_coverage.md` |
 | Search API / Schema / sparse vector | 疑似実験 | `appendices/cloud_search_api_schema.md` |
 | LangChain / LlamaIndex / MCP | 任意 | `advanced_labs/integrations` |
 

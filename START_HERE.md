@@ -111,6 +111,7 @@ Level 2 以降で必要になったら、metadata filtering や full-text search
 
 Level 9 まで終えた後は、次も確認します。
 
+- [Local / OSS Chroma Coverage Matrix](appendices/local_chroma_coverage.md): Cloud を除いた Chroma 機能のカバー範囲。
 - [Search API Overview](https://docs.trychroma.com/cloud/search-api/overview): Cloud の composable search interface。
 - [Sparse Vector Search Setup](https://docs.trychroma.com/cloud/schema/sparse-vector-search): keyword retrieval と hybrid search。
 - [Agentic Search](https://docs.trychroma.com/guides/build/agentic-search): agent が複数回検索して回答する設計。

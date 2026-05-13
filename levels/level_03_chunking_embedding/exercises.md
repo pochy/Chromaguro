@@ -43,6 +43,21 @@ python levels/level_03_chunking_embedding/examples/03_code_chunking.py
 
 関数単位・class 単位の chunk が、自然文の chunk と何が違うか説明してください。
 
+## 5. embedding function の責任を分ける
+
+次を実行してください。
+
+```bash
+python levels/level_03_chunking_embedding/examples/04_custom_embedding_function.py
+```
+
+次の 2 つの違いを説明してください。
+
+```text
+アプリ側で embeddings / query_embeddings を明示して Chroma に渡す
+collection に embedding_function を設定し、documents / query_texts を渡す
+```
+
 ## 提出物
 
 次の内容をメモしてください。
@@ -52,6 +67,7 @@ python levels/level_03_chunking_embedding/examples/03_code_chunking.py
 2. 検索結果 1 位の section
 3. chunk に source / section / chunk_index が必要な理由
 4. 自分の文書ならどの単位で chunk するか
+5. embedding_function を collection に持たせる場合の利点と注意点
 ```
 
 ## 進級チェック
