@@ -123,12 +123,15 @@ final project starter:
 
 ```bash
 python levels/level_09_professional/examples/04_final_project_starter.py
+python levels/level_09_professional/examples/05_final_project_api.py
+python levels/level_09_professional/examples/06_final_project_api_probe.py
 ```
 
 API サーバー:
 
 ```bash
 uvicorn levels.level_07_application.examples.api_server:app --reload
+uvicorn levels.level_09_professional.capstone_api:app --reload
 ```
 
 起動後に確認する endpoint:

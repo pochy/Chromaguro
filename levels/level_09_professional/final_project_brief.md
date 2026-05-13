@@ -171,7 +171,20 @@ LangChain / LlamaIndex / MCP を使う場合の利点と制約を説明できる
 
 ### Phase 3: API にする
 
-Level 7 の `/search` と `/rag` を参考に、final project の retrieval 関数を API から呼びます。API 層で tenant_id と permission を決め、Chroma の `where` に渡します。
+Level 7 の `/search` と `/rag` を参考に、final project の retrieval 関数を API から呼びます。まず次を実行します。
+
+```bash
+python levels/level_09_professional/examples/05_final_project_api.py
+python levels/level_09_professional/examples/06_final_project_api_probe.py
+```
+
+server として起動する場合:
+
+```bash
+uvicorn levels.level_09_professional.capstone_api:app --reload
+```
+
+API 層で tenant_id と permission を決め、Chroma の `where` に渡します。`/search` は検索診断を返し、`/rag` は answer、sources、context、diagnostics を返します。
 
 ### Phase 4: 評価を増やす
 

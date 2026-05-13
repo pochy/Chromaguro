@@ -95,6 +95,28 @@ MMR で選ばれた context
 mini evaluation の recall@5
 ```
 
+次に、同じ retrieval pipeline を API として公開します。
+
+```bash
+python levels/level_09_professional/examples/05_final_project_api.py
+python levels/level_09_professional/examples/06_final_project_api_probe.py
+```
+
+実際に server として起動する場合:
+
+```bash
+uvicorn levels.level_09_professional.capstone_api:app --reload
+```
+
+見る場所:
+
+```text
+GET /health で ingest 済み chunk 数が返るか
+GET /search で expanded query, dense_ids, keyword_ids, fused_ids が返るか
+POST /rag で answer, sources, diagnostics が返るか
+API 層で tenant_id を受け取り Chroma の where filter に渡しているか
+```
+
 いきなり全部作る必要はありません。自分の final project では、まずは次だけで十分です。
 
 ```text
