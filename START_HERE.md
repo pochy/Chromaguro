@@ -103,6 +103,11 @@ No such file or directory
 
 collection already exists
   同じ名前の collection を作ろうとしている。教材コードでは基本的に回避済み。
+
+embedding runtime returned status 400
+  Chroma のデフォルト embedding runtime や外部 embedding API が呼ばれて失敗している可能性があります。
+  この教材では、まず levels/*/examples のコードを使ってください。教材用 helper は embeddings と query_embeddings を明示しているため、標準ルートでは外部 embedding runtime を使いません。
+  TUTORIAL.md 内の公式ドキュメント風スニペットを直接実行する場合は、embedding function や API key の設定が別途必要になることがあります。
 ```
 
 ## 学習ペースの目安

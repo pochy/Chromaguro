@@ -1,6 +1,7 @@
 # Chroma DB チュートリアル
 
 > 実際の教材コンテンツは `levels/` 配下に Level 0 から Level 9 まで分割して配置しています。初心者はまず `START_HERE.md`、用語が不安な場合は `glossary.md` から始めてください。
+> `TUTORIAL.md` 内のコード片は設計説明用です。標準の実行ルートでは `levels/*/examples` を使ってください。`query_texts` などを含む公式ドキュメント風スニペットを直接実行すると、環境によっては Chroma のデフォルト embedding runtime が呼ばれ、`embedding runtime returned status 400` のようなエラーになることがあります。
 
 ## 全体方針
 
