@@ -18,6 +18,13 @@ source .venv/bin/activate
 python advanced_labs/local_server_http/http_client_smoke.py
 ```
 
+`localhost:8000` が既に使われている場合は、両方の terminal で同じ port を指定します。
+
+```bash
+chroma run --path ./advanced_labs/local_server_http/chroma_server_db --port 8001
+CHROMA_PORT=8001 python advanced_labs/local_server_http/http_client_smoke.py
+```
+
 ## 見る場所
 
 ```text

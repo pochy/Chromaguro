@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -12,7 +13,9 @@ from shared.chroma_helpers import add_records, query_records, recreate_collectio
 
 
 def main() -> None:
-    client = chromadb.HttpClient(host="localhost", port=8000)
+    host = os.getenv("CHROMA_HOST", "localhost")
+    port = int(os.getenv("CHROMA_PORT", "8000"))
+    client = chromadb.HttpClient(host=host, port=port)
     collection = recreate_collection(client, "http_client_smoke")
     add_records(
         collection,
