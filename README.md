@@ -136,9 +136,20 @@ POST /rag
 全 example を確認する場合:
 
 ```bash
-for f in $(find levels -path '*/examples/*.py' | sort); do
-  PYTHONDONTWRITEBYTECODE=1 python "$f"
-done
+scripts/validate_tutorial.sh
+```
+
+任意の integration lab まで確認する場合:
+
+```bash
+pip install -r requirements-integrations.txt
+scripts/validate_tutorial.sh --optional-integrations
+```
+
+`HttpClient` / local server lab まで確認する場合:
+
+```bash
+scripts/validate_tutorial.sh --http --port 9010
 ```
 
 ## フォルダ構成
@@ -154,6 +165,7 @@ shared/                     教材用の共通 helper
 levels/                     Level 0-9 の教材本体
 appendices/                 Chroma 機能マップ・Cloud専用機能・運用・連携の付録
 advanced_labs/              local server / integration / agent memory の任意演習
+scripts/                    教材の検証スクリプト
 ```
 
 各 Level の主な構成:

@@ -17,6 +17,14 @@ python levels/level_01_intro/examples/01_hello_chroma.py
 
 出力に `coffee_intro_001` や `tea_intro_001` が表示されれば成功です。意味が全部わからなくても構いません。最初の目的は「文書を入れて、質問で取り出す」体験をすることです。
 
+環境全体が正しく動くか確認したい場合は、次を実行します。
+
+```bash
+scripts/validate_tutorial.sh
+```
+
+このコマンドは教材の構造、Python 構文、Level 1-9 の全 example を確認します。初日は必須ではありませんが、途中で環境に不安が出た時の確認口として使えます。
+
 Level 0 は思想の入口です。全部を完璧に理解しようとせず、「Chroma は LLM に読ませる文書を選ぶ道具」という一文だけ持って Level 1 に進んでください。
 
 ## この教材の読み方
@@ -137,6 +145,12 @@ pip install -r requirements.txt
 ```
 
 実行コマンドは必ずリポジトリのルート、つまり `TUTORIAL.md` があるディレクトリで打ちます。
+
+教材全体の動作確認:
+
+```bash
+scripts/validate_tutorial.sh
+```
 
 Python のエラーが出たら、いきなり全部理解しようとせず、次の順で見ます。
 
