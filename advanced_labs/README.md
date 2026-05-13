@@ -45,3 +45,5 @@ scripts/validate_tutorial.sh --http --port 9010
 ```
 
 `localhost:8000` や `8001` が既に使われている環境もあるため、local server lab では空いている port を明示することを推奨します。
+
+GitHub Actions では `Optional labs` workflow を手動実行すると、integration lab と local server / `HttpClient` lab を標準 CI とは分けて確認できます。

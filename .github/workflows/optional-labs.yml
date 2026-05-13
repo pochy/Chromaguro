@@ -1,0 +1,63 @@
+name: Optional labs
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_http:
+        description: Run the local server / HttpClient lab
+        required: true
+        type: boolean
+        default: true
+      http_port:
+        description: Port used by the HttpClient lab
+        required: true
+        type: string
+        default: "9010"
+
+jobs:
+  integrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-integrations.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-integrations.txt
+
+      - name: Validate optional integrations
+        run: scripts/validate_tutorial.sh --python python --optional-integrations
+
+  http-client:
+    if: ${{ inputs.include_http }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Validate HttpClient lab
+        run: scripts/validate_tutorial.sh --python python --http --port "${{ inputs.http_port }}"
