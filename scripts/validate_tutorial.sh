@@ -25,6 +25,7 @@ Usage: scripts/validate_tutorial.sh [options]
 
 Validates the required Chroma tutorial path:
   - checks tutorial structure
+  - checks local Markdown links
   - checks generated DB/cache files are ignored
   - compiles Python examples
   - runs every levels/*/examples/*.py file
@@ -185,6 +186,11 @@ compile_python() {
   run "$PYTHON_BIN" -m compileall -q shared levels advanced_labs
 }
 
+check_markdown_links() {
+  section "Checking Markdown links"
+  run "$PYTHON_BIN" scripts/check_markdown_links.py
+}
+
 run_level_examples() {
   section "Running level examples"
   local count=0
@@ -281,6 +287,7 @@ PY
 }
 
 check_structure
+check_markdown_links
 compile_python
 run_level_examples
 
