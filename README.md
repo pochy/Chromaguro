@@ -158,6 +158,28 @@ scripts/validate_tutorial.sh --optional-integrations
 scripts/validate_tutorial.sh --http --port 9010
 ```
 
+## メンテナ向け検証
+
+リリース前や大きな教材変更の後は、手元の既存 `.venv` だけでなく fresh clone / fresh venv 相当でも確認します。
+
+```bash
+git clone <this-repo-url> /tmp/chromaguro-fresh
+cd /tmp/chromaguro-fresh
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python levels/level_01_intro/examples/01_hello_chroma.py
+scripts/validate_tutorial.sh
+```
+
+任意ラボまで確認する場合は、追加で次を実行します。
+
+```bash
+pip install -r requirements-integrations.txt
+scripts/validate_tutorial.sh --optional-integrations
+scripts/validate_tutorial.sh --http --port 9010
+```
+
 ## フォルダ構成
 
 ```text
