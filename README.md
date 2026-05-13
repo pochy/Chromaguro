@@ -96,6 +96,7 @@ python levels/level_01_intro/examples/01_hello_chroma.py
 | `PersistentClient` | 実行する | 運用設計 |
 | `HttpClient` / local server | 任意 | `advanced_labs/local_server_http` |
 | local / OSS coverage | 付録で確認 | `appendices/local_chroma_coverage.md` |
+| 次に追加する optional lab | 付録で確認 | `appendices/next_steps.md` |
 | Search API / Schema / sparse vector | 疑似実験 | `appendices/cloud_search_api_schema.md` |
 | LangChain / LlamaIndex / MCP | 任意 | `advanced_labs/integrations` |
 
@@ -220,3 +221,5 @@ levels/level_xx_*/
 ## 次に読むもの
 
 初めての場合は [START_HERE.md](START_HERE.md) に進み、Level 0 を短く読んでから Level 1 の Hello Chroma を実行してください。
+
+Level 9 まで終えた後に教材をさらに広げる場合は、[Next Steps Roadmap](appendices/next_steps.md) で real embedding comparison、AsyncHttpClient、Docker local server、HNSW experiment、multimodal retrieval の順に確認します。

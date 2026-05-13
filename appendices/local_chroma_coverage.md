@@ -100,6 +100,8 @@ Chroma API には image / uri 系の入力もありますが、この教材は t
 
 まず足すなら、`real embedding comparison lab` が最も実務価値があります。ただし API key や model download が必要になりやすいため、標準ルートではなく optional lab に分けるのが安全です。
 
+詳細な実装順、追加予定ファイル、各 lab の完了条件は [Next Steps Roadmap](next_steps.md) にまとめています。
+
 ## Official Docs Used For This Matrix
 
 - [Getting Started](https://docs.trychroma.com/docs/overview/getting-started)

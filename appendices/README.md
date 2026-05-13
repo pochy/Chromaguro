@@ -9,10 +9,11 @@
 ```text
 1. feature_map.md
 2. local_chroma_coverage.md
-3. cloud_search_api_schema.md
-4. operations.md
-5. integrations.md
-6. troubleshooting.md
+3. next_steps.md
+4. cloud_search_api_schema.md
+5. operations.md
+6. integrations.md
+7. troubleshooting.md
 ```
 
 Level 9 まで終えた後に読むと、Chroma の全体像と実務で使う判断軸がつながります。
