@@ -78,7 +78,24 @@ chunker v1 と v2 で結果が変わるか
 
 `final_project_brief.md` を読み、自分の技術メモやドキュメントを検索するアプリを設計します。
 
-いきなり全部作る必要はありません。まずは次だけで十分です。
+まず starter を実行し、小さな完成形を確認します。
+
+```bash
+python levels/level_09_professional/examples/04_final_project_starter.py
+```
+
+見る場所:
+
+```text
+Markdown が何 chunk になったか
+dense ranking と keyword ranking の違い
+RRF 後の fused ranking
+MMR で選ばれた context
+回答に source / section / chunk_id が出ているか
+mini evaluation の recall@5
+```
+
+いきなり全部作る必要はありません。自分の final project では、まずは次だけで十分です。
 
 ```text
 自分の Markdown を 3 ファイル用意する
