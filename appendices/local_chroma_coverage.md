@@ -12,7 +12,7 @@
 | In-memory client | `chromadb.Client()` で一時実験 | Level 1, many examples | hands-on |
 | PersistentClient | ローカル path に保存 | Level 1, Level 5, Level 9 | hands-on |
 | Local server / HttpClient | `chroma run` + `HttpClient` | advanced_labs/local_server_http | optional hands-on |
-| AsyncHttpClient | async 版 HTTP client | 未実装 | gap |
+| AsyncHttpClient | async 版 HTTP client | advanced_labs/async_http_client | optional hands-on |
 | Collection lifecycle | create, get, list, modify, delete | Level 8 `04_collection_lifecycle.py` | hands-on |
 | Collection metadata | collection の説明・設定情報 | Level 8 | hands-on |
 | Collection configuration / HNSW | space, ef_search など index 設定 | Level 8 tradeoff matrix | conceptual |
@@ -27,6 +27,7 @@
 | Embedding functions | collection に embedding function を持たせる | Level 3 `04_custom_embedding_function.py` | hands-on |
 | Manual embeddings | embeddings / query_embeddings を自分で渡す | shared helper, most examples | hands-on |
 | Default embedding function | default Sentence Transformers | 説明のみ | conceptual |
+| Local embedding model comparison | local model と baseline の品質比較 | advanced_labs/local_embedding_comparison | optional hands-on |
 | External embedding providers | OpenAI, Cohere, Jina, Mistral など | 発展課題 | gap |
 | Multi-modal inputs | images / uris など | 未実装 | gap |
 | CLI browse / vacuum | collection inspection / maintenance | appendix mention only | conceptual |
@@ -64,13 +65,13 @@ Docker / server deployment / backup / migration を本番運用できる
 
 `HttpClient` の非同期版です。非同期 Web API や async worker で Chroma を呼ぶ場合に必要になります。
 
-この教材では、まず同期 `HttpClient` で client-server mode の役割を学びます。async は API framework の実装方針に強く依存するため、発展課題にしています。
+この教材では、まず同期 `HttpClient` で client-server mode の役割を学び、`advanced_labs/async_http_client` で async query、FastAPI endpoint、concurrent query を扱います。timeout、retry、cancellation などの深い運用設計は発展課題です。
 
-### 2. Real Embedding Providers
+### 2. Local / Real Embedding Providers
 
 Level 3 と shared helper では、教材を API キー不要にするため deterministic な tutorial embedding を使います。Level 3 `04_custom_embedding_function.py` では Chroma の embedding function 機構そのものを使いますが、OpenAI / Cohere / Jina / Mistral などの本物の provider 比較は扱いません。
 
-発展でやるなら、同じ gold questions を使い、embedding provider ごとに recall@k / latency / cost / failure type を比較します。
+local model の比較は `advanced_labs/local_embedding_comparison` で扱います。外部 provider まで広げる場合は、同じ gold questions を使い、embedding provider ごとに recall@k / latency / cost / failure type を比較します。
 
 ### 3. Collection Configuration / HNSW Tuning
 
@@ -91,14 +92,14 @@ Chroma API には image / uri 系の入力もありますが、この教材は t
 優先度順です。
 
 ```text
-1. real embedding comparison lab
-2. AsyncHttpClient lab
-3. Docker local server lab
-4. HNSW configuration experiment
-5. image / URI retrieval appendix
+0. local embedding comparison lab: added in `advanced_labs/local_embedding_comparison`
+1. AsyncHttpClient lab: added in `advanced_labs/async_http_client`
+2. Docker local server lab
+3. HNSW configuration experiment
+4. image / URI retrieval appendix
 ```
 
-まず足すなら、`real embedding comparison lab` が最も実務価値があります。ただし API key や model download が必要になりやすいため、標準ルートではなく optional lab に分けるのが安全です。
+次に足すなら、`Docker local server lab` が実務価値の高い候補です。local embedding comparison と AsyncHttpClient は、標準ルートを API キー不要のまま保つため optional lab として追加済みです。
 
 詳細な実装順、追加予定ファイル、各 lab の完了条件は [Next Steps Roadmap](next_steps.md) にまとめています。
 

@@ -14,7 +14,9 @@ if [[ -z "$PYTHON_BIN" ]]; then
 fi
 
 RUN_OPTIONAL=0
+RUN_LOCAL_EMBEDDINGS=0
 RUN_HTTP=0
+RUN_ASYNC_HTTP=0
 HTTP_HOST="${CHROMA_HOST:-localhost}"
 HTTP_PORT="${CHROMA_PORT:-9010}"
 CHROMA_BIN="${CHROMA_BIN:-}"
@@ -32,9 +34,12 @@ Validates the required Chroma tutorial path:
 
 Options:
   --optional-integrations  Also run advanced integration labs.
+  --optional-local-embeddings
+                           Also run the local embedding comparison lab.
   --http                   Also start a local Chroma server and run the HttpClient lab.
+  --async-http             Also start a local Chroma server and run the AsyncHttpClient lab.
   --host HOST              Host for the HttpClient lab. Default: localhost.
-  --port PORT              Port for the HttpClient lab. Default: 9010.
+  --port PORT              Port for the HTTP labs. Default: 9010.
   --python PATH            Python executable to use.
   -h, --help               Show this help.
 
@@ -51,8 +56,14 @@ while [[ $# -gt 0 ]]; do
     --optional-integrations)
       RUN_OPTIONAL=1
       ;;
+    --optional-local-embeddings)
+      RUN_LOCAL_EMBEDDINGS=1
+      ;;
     --http)
       RUN_HTTP=1
+      ;;
+    --async-http)
+      RUN_ASYNC_HTTP=1
       ;;
     --host)
       shift
@@ -215,6 +226,20 @@ run_optional_integrations() {
   done
 }
 
+run_optional_local_embeddings() {
+  section "Running local embedding comparison lab"
+  local labs=(
+    "advanced_labs/local_embedding_comparison/examples/01_prepare_gold_questions.py"
+    "advanced_labs/local_embedding_comparison/examples/02_compare_tutorial_embedding.py"
+    "advanced_labs/local_embedding_comparison/examples/03_compare_local_embedding_model.py"
+    "advanced_labs/local_embedding_comparison/examples/04_report_metrics.py"
+  )
+  local lab
+  for lab in "${labs[@]}"; do
+    run "$PYTHON_BIN" "$lab"
+  done
+}
+
 find_chroma_bin() {
   if [[ -n "$CHROMA_BIN" ]]; then
     printf '%s\n' "$CHROMA_BIN"
@@ -286,6 +311,79 @@ PY
   run env CHROMA_HOST="$HTTP_HOST" CHROMA_PORT="$HTTP_PORT" "$PYTHON_BIN" advanced_labs/local_server_http/http_client_smoke.py
 }
 
+run_async_http_lab() {
+  section "Running AsyncHttpClient lab"
+  local chroma_cli
+  if ! chroma_cli="$(find_chroma_bin)"; then
+    echo "Chroma CLI was not found. Install requirements.txt or set CHROMA_BIN." >&2
+    exit 1
+  fi
+  local log_file="${TMPDIR:-/tmp}/chromaguro-async-chroma-${HTTP_PORT}.log"
+
+  rm -f "$log_file"
+  "$chroma_cli" run \
+    --path ./advanced_labs/async_http_client/chroma_server_db \
+    --host "$HTTP_HOST" \
+    --port "$HTTP_PORT" \
+    >"$log_file" 2>&1 &
+  local server_pid=$!
+
+  cleanup_async_http_server() {
+    if kill -0 "$server_pid" >/dev/null 2>&1; then
+      kill "$server_pid" >/dev/null 2>&1 || true
+      wait "$server_pid" >/dev/null 2>&1 || true
+    fi
+  }
+  trap cleanup_async_http_server RETURN
+
+  local ready=0
+  for _ in {1..30}; do
+    if ! kill -0 "$server_pid" >/dev/null 2>&1; then
+      cat "$log_file" >&2
+      echo "Chroma server exited before it became ready." >&2
+      exit 1
+    fi
+    if CHROMA_HOST="$HTTP_HOST" CHROMA_PORT="$HTTP_PORT" "$PYTHON_BIN" - <<'PY' >/dev/null 2>&1
+import asyncio
+import os
+
+import chromadb
+
+
+async def main() -> None:
+    client = await chromadb.AsyncHttpClient(
+        host=os.environ["CHROMA_HOST"],
+        port=int(os.environ["CHROMA_PORT"]),
+    )
+    await client.heartbeat()
+
+
+asyncio.run(main())
+PY
+    then
+      ready=1
+      break
+    fi
+    sleep 1
+  done
+
+  if [[ "$ready" -ne 1 ]]; then
+    cat "$log_file" >&2
+    echo "Chroma server did not become ready on ${HTTP_HOST}:${HTTP_PORT}." >&2
+    exit 1
+  fi
+
+  local labs=(
+    "advanced_labs/async_http_client/examples/01_async_query.py"
+    "advanced_labs/async_http_client/examples/02_fastapi_async_search.py"
+    "advanced_labs/async_http_client/examples/03_concurrent_queries.py"
+  )
+  local lab
+  for lab in "${labs[@]}"; do
+    run env CHROMA_HOST="$HTTP_HOST" CHROMA_PORT="$HTTP_PORT" "$PYTHON_BIN" "$lab"
+  done
+}
+
 check_structure
 check_markdown_links
 compile_python
@@ -295,8 +393,16 @@ if [[ "$RUN_OPTIONAL" -eq 1 ]]; then
   run_optional_integrations
 fi
 
+if [[ "$RUN_LOCAL_EMBEDDINGS" -eq 1 ]]; then
+  run_optional_local_embeddings
+fi
+
 if [[ "$RUN_HTTP" -eq 1 ]]; then
   run_http_lab
+fi
+
+if [[ "$RUN_ASYNC_HTTP" -eq 1 ]]; then
+  run_async_http_lab
 fi
 
 section "Validation complete"

@@ -1,0 +1,34 @@
+[
+  {
+    "question": "Chroma のデータをローカルに保存するには？",
+    "relevant_ids": ["chroma_persistent_client"]
+  },
+  {
+    "question": "FastAPI から別プロセスの Chroma に接続したい",
+    "relevant_ids": ["chroma_http_client"]
+  },
+  {
+    "question": "tenant ごとに検索範囲を分けるには？",
+    "relevant_ids": ["metadata_tenant_filter"]
+  },
+  {
+    "question": "ERR_PAYMENT_TIMEOUT を含む文書を探したい",
+    "relevant_ids": ["fulltext_error_code"]
+  },
+  {
+    "question": "embedding model を変えたらなぜ collection を分ける？",
+    "relevant_ids": ["embedding_model_versioning"]
+  },
+  {
+    "question": "検索品質を数値で評価したい",
+    "relevant_ids": ["retrieval_evaluation_metrics"]
+  },
+  {
+    "question": "RAG の回答に根拠 source を表示したい",
+    "relevant_ids": ["rag_source_display"]
+  },
+  {
+    "question": "長い markdown manual はどの単位で分割する？",
+    "relevant_ids": ["chunking_heading_strategy"]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "chroma_persistent_client",
+    "document": "PersistentClient は path を指定して Chroma の collection と record をローカルディスクに保存します。プログラムを終了してもデータが残ります。",
+    "metadata": {
+      "topic": "client",
+      "source": "clients.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chroma_http_client",
+    "document": "HttpClient は別プロセスで動く Chroma server に接続します。FastAPI や worker から Chroma を分離して使う時に向いています。",
+    "metadata": {
+      "topic": "client",
+      "source": "client_server.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "metadata_tenant_filter",
+    "document": "metadata の tenant_id や doc_type を where filter に指定すると、検索対象を tenant や文書種別で絞り込めます。",
+    "metadata": {
+      "topic": "metadata",
+      "source": "filters.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "fulltext_error_code",
+    "document": "where_document の $contains は ERR_PAYMENT_TIMEOUT や SKU-12345 のような正確な keyword を含む document を探す時に役立ちます。",
+    "metadata": {
+      "topic": "keyword",
+      "source": "fulltext.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "embedding_model_versioning",
+    "document": "embedding model を変更すると vector の分布や次元数が変わるため、同じ collection を上書きせず、新しい collection で reindex して評価します。",
+    "metadata": {
+      "topic": "embedding",
+      "source": "embedding_versioning.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "retrieval_evaluation_metrics",
+    "document": "検索品質は gold questions と relevant_ids を使い、recall@k、precision@k、MRR、failure type で比較します。感覚だけで判断しません。",
+    "metadata": {
+      "topic": "evaluation",
+      "source": "evaluation.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "rag_source_display",
+    "document": "RAG の回答では、本文だけでなく source、section、chunk_id、page を表示します。source がない回答は根拠を検証できません。",
+    "metadata": {
+      "topic": "rag",
+      "source": "rag_context.md",
+      "lang": "ja"
+    }
+  },
+  {
+    "id": "chunking_heading_strategy",
+    "document": "長い markdown や manual は 1 record にせず、見出しや段落ごとに chunk します。chunk には source、section、chunk_index を metadata として残します。",
+    "metadata": {
+      "topic": "chunking",
+      "source": "chunking.md",
+      "lang": "ja"
+    }
+  }
+]

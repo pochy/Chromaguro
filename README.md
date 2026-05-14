@@ -95,6 +95,8 @@ python levels/level_01_intro/examples/01_hello_chroma.py
 | `query`, `get`, `where`, `where_document` | 実行する | 詳細比較 |
 | `PersistentClient` | 実行する | 運用設計 |
 | `HttpClient` / local server | 任意 | `advanced_labs/local_server_http` |
+| `AsyncHttpClient` / async API | 任意 | `advanced_labs/async_http_client` |
+| local embedding model comparison | 任意 | `advanced_labs/local_embedding_comparison` |
 | local / OSS coverage | 付録で確認 | `appendices/local_chroma_coverage.md` |
 | 次に追加する optional lab | 付録で確認 | `appendices/next_steps.md` |
 | Search API / Schema / sparse vector | 疑似実験 | `appendices/cloud_search_api_schema.md` |
@@ -157,10 +159,22 @@ pip install -r requirements-integrations.txt
 scripts/validate_tutorial.sh --optional-integrations
 ```
 
+ローカル embedding model 比較 lab を確認する場合:
+
+```bash
+scripts/validate_tutorial.sh --optional-local-embeddings
+```
+
 `HttpClient` / local server lab まで確認する場合:
 
 ```bash
 scripts/validate_tutorial.sh --http --port 9010
+```
+
+`AsyncHttpClient` lab まで確認する場合:
+
+```bash
+scripts/validate_tutorial.sh --async-http --port 9011
 ```
 
 ## メンテナ向け検証

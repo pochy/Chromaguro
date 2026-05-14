@@ -37,9 +37,9 @@ Cloud 専用 API まで実運用できる
 - 新しい機能を足すたびに、`appendices/local_chroma_coverage.md` の gap を更新する。
 - runnable example、README、exercise、validation command をセットで追加する。
 
-## 優先度 1: Real Embedding Comparison Lab
+## 追加済み: Local Embedding Comparison Lab
 
-最初に追加する価値が最も高い lab です。
+最初の optional lab として追加済みです。
 
 ### なぜ必要か
 
@@ -47,20 +47,29 @@ Cloud 専用 API まで実運用できる
 
 この lab では、Chroma そのものだけでなく、**Chroma に入れる embedding が検索結果をどう変えるか**を学びます。
 
+追加先:
+
+```text
+advanced_labs/local_embedding_comparison/
+```
+
 ### 追加する内容
 
 ```text
-advanced_labs/real_embedding_comparison/
+advanced_labs/local_embedding_comparison/
   README.md
+  data/
+    records.json
+    gold_questions.json
   examples/
     01_prepare_gold_questions.py
-    02_compare_local_embedding.py
-    03_compare_external_provider.py
+    02_compare_tutorial_embedding.py
+    03_compare_local_embedding_model.py
     04_report_metrics.py
   exercises.md
 ```
 
-標準では local embedding または既存 helper だけで動かし、OpenAI / Cohere / Jina / Mistral などの外部 provider は環境変数がある場合だけ実行します。
+標準では既存 helper による tutorial embedding baseline だけで動かし、Sentence Transformers のローカル embedding model は `LOCAL_EMBEDDING_MODEL` がある場合だけ実行します。OpenAI / Cohere / Jina / Mistral などの外部 provider は、さらに後の optional appendix に分けます。
 
 ### 見るべき出力
 
@@ -70,8 +79,7 @@ recall@k
 precision@k
 MRR
 latency_ms
-estimated_cost
-failure_type
+retrieved_ids
 ```
 
 ### 完了条件
@@ -81,11 +89,17 @@ failure_type
 - 「品質」「速度」「コスト」「日本語対応」の tradeoff を説明できる。
 - API key がない環境でも validation が通る。
 
-## 優先度 2: AsyncHttpClient Lab
+## 追加済み: AsyncHttpClient Lab
 
 ### なぜ必要か
 
 FastAPI、async worker、並列 retrieval pipeline では、同期 `HttpClient` だけでは設計判断が足りません。Chroma server を別 process として動かし、async な application code から呼ぶ形を学びます。
+
+追加先:
+
+```text
+advanced_labs/async_http_client/
+```
 
 ### 追加する内容
 
@@ -184,15 +198,15 @@ advanced_labs/multimodal_retrieval/
 ## 進める順番
 
 ```text
-1. real_embedding_comparison を追加する
-2. local_chroma_coverage.md の External embedding providers を gap から optional hands-on に変える
-3. AsyncHttpClient lab を追加する
+1. local_embedding_comparison を追加する: done
+2. local_chroma_coverage.md の Local embedding model comparison を optional hands-on にする: done
+3. AsyncHttpClient lab を追加する: done
 4. Docker local server lab を追加する
 5. HNSW experiment を追加する
 6. multimodal appendix を追加する
 ```
 
-まず着手するなら、`real_embedding_comparison` です。Chroma を使う意味が最も伝わりやすく、SQLite 的な CRUD 学習から一段離れて、retrieval quality の設計判断に入れるからです。
+次に着手するなら、`Docker local server lab` です。local embedding comparison で retrieval quality、AsyncHttpClient で async application integration を扱った後は、Chroma server を container と volume で動かす運用入口に進むのが自然です。
 
 ## 完了後に言えること
 

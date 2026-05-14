@@ -1,0 +1,3 @@
+# Optional dependencies for advanced_labs/local_embedding_comparison.
+# The core tutorial does not require these packages.
+sentence-transformers>=3.0.0
